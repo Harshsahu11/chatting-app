@@ -13,18 +13,16 @@ const App = () => {
     <div>
 
     <Navbar />
-    <Routes>
-
-      <Route  path="/" element={<HomePage />}/>
-      <Route  path="/signup" element={<SignUpPage />}/>
-      <Route  path="/login" element={<LoginPage />}/>
-      <Route  path="/settings" element={<SettingPage />}/>
-      <Route  path="/profile" element={<ProfilePage />}/>
-
-    </Routes>
-
+      <Routes>
+        <Route  path="/" element={<HomePage />}/>
+        <Route  path="/signup" element={<SignUpPage />}/>
+        <Route  path="/login" element={<LoginPage />}/>
+        <Route  path="/settings" element={<SettingPage />}/>
+        <Route  path="/profile" element={<ProfilePage />}/>
+        </Routes>
     </div>
-  )
-}
+  );
+};
+
 
 export default App
