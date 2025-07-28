@@ -7,8 +7,17 @@ import SettingPage from './pages/SettingPage';
 import ProfilePage from './pages/ProfilePage';
 
 import { Routes,Route } from "react-router-dom";
+import { useAuthStore } from "./store/useAuthStore";
+import { useEffect } from "react";
 
 const App = () => {
+  const {authUser,checkAuth} = useAuthStore();
+
+  useEffect(()=>{
+    checkAuth()
+  },[checkAuth]);
+
+  console.log(authUser)
   return (
     <div>
 
