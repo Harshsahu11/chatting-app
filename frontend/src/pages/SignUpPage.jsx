@@ -6,7 +6,8 @@ import {
   Mail,
   Lock,
   Eye,
-  EyeOff
+  EyeOff,
+  Loader2,
 } from "lucide-react";
 
 function SignUpPage() {
@@ -14,7 +15,7 @@ function SignUpPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const { signup, isSigningUp } = useAuthStore();
@@ -26,23 +27,24 @@ function SignUpPage() {
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
-      {/* Left side */}
+      {/* left side */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
-          {/* Logo & Heading */}
+          {/* LOGO */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                 <MessageSquare className="size-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold mt-2">Create Account</h1>
-              <p className="text-gray-500">Get started with your free account</p>
+              <p className="text-base-content/60">
+                Get started with your free account
+              </p>
             </div>
           </div>
 
-          {/* Form */}
+          {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-6">
-
             {/* Full Name */}
             <div className="form-control">
               <label className="label">
@@ -50,14 +52,16 @@ function SignUpPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="size-5 text-gray-500" />
+                  <User className="size-5 text-base-content/40" />
                 </div>
                 <input
                   type="text"
                   className="input input-bordered w-full pl-10"
-                  placeholder="Harsh Sahu"
+                  placeholder="John Doe"
                   value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -76,7 +80,9 @@ function SignUpPage() {
                   className="input input-bordered w-full pl-10"
                   placeholder="you@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -88,38 +94,49 @@ function SignUpPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="size-5 text-gray-500" />
+                  <Lock className="size-5 text-base-content/40" />
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
                   className="input input-bordered w-full pl-10 pr-10"
                   placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                 />
-                <div
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className="size-5 text-gray-500" />
+                    <EyeOff className="size-5 text-base-content/40" />
                   ) : (
-                    <Eye className="size-5 text-gray-500" />
+                    <Eye className="size-5 text-base-content/40" />
                   )}
-                </div>
+                </button>
               </div>
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn btn-primary w-full">
-              {isSigningUp ? "Creating Account..." : "Create Account"}
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={isSigningUp}
+            >
+              {isSigningUp ? (
+                <>
+                  <Loader2 className="size-5 animate-spin mr-2" />
+                  Creating...
+                </>
+              ) : (
+                "Create Account"
+              )}
             </button>
           </form>
         </div>
       </div>
-
-      {/* Right side (optional for image/banner) */}
-      <div className="hidden lg:block bg-primary/5" />
     </div>
   );
 }
