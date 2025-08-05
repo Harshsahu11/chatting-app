@@ -10,6 +10,8 @@ import {
   Loader2,
 } from "lucide-react";
 
+import AuthImagePattern from "../components/AuthImagePattern.jsx";
+
 function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -137,7 +139,16 @@ function SignUpPage() {
           </form>
         </div>
       </div>
+       {/* right side */}
+    <AuthImagePattern 
+    title="Join Harsh Sahu"
+    subtitle="Connect with your Friends"
+    />
     </div>
+
+     
+
+
   );
 }
 
